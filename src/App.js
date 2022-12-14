@@ -1,8 +1,6 @@
-import './App.css';
-
 export default function App() {
   return (
-    <div>
+    <div className="chat_container">
       Hello REACT-Chat!
     </div>
   );
