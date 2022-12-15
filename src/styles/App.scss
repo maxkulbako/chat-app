@@ -21,11 +21,36 @@
 }
 
 .navbar {
-  display: flex;
+  display: grid;
+  grid-template: 50% 50% / 70px 1fr 40px;
+  grid-template-areas: "avatar name btn" "avatar appointment btn";
+  margin-bottom: 20px;
 
   .css-frs8jf-MuiBadge-root {
-    margin-right: 20px;
+    grid-area: avatar;
+    margin-right: 10px;
   }
 
+  .navbarName {
+    grid-area: name;
+    font-size: 20px;
+    color: rgb(24, 87, 203);
+    margin: 4px 0 auto;
+  }
+
+  .appointment {
+    grid-area: appointment;
+    margin: 0 0 auto;
+    font-size: 10px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.49);
+    opacity: 0.8;
+  }
+
+  .changeBtn {
+    align-self: start;
+    padding-top: 4px;
+    grid-area: btn;
+  }
 
 }
