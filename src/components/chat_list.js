@@ -5,7 +5,6 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import {useState} from "react";
 
 export function ChatList({data = usersData}) {
     const list = data.map((item, index) => (

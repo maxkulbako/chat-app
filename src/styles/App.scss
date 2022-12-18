@@ -35,6 +35,12 @@ body {
     margin-right: 10px;
   }
 
+  .css-frs8jf-MuiBadge-root .MuiBadge-badge {
+    &::after {
+      top: -1px;
+      left: -1px;
+    }
+  }
   .navbarName {
     grid-area: name;
     font-size: 20px;
@@ -119,4 +125,37 @@ body {
     opacity: 0.8;
   }
 
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .chat_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .activeChatUser_info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span {
+      font-size: 18px;
+    }
+  }
+  .activeChat_buttons {
+    display: flex;
+  }
+
+  .chat_table {
+    flex: 1;
+  }
+
+  .chat_input {
+    justify-self: end;
+  }
 }

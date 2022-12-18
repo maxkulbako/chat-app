@@ -1,5 +1,5 @@
 export function Input() {
     return (
-        <div className="input">Input</div>
+        <div className="chat_input">Input</div>
     );
 }
