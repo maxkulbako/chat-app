@@ -70,7 +70,7 @@ export function Chat() {
                 <Message/>
                 <Message/>
             </div>
-            <Divider/>
+            <Divider sx={{marginBottom: "10px",}}/>
             <Input/>
         </div>
     );
