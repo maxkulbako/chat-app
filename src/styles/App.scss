@@ -20,10 +20,6 @@ body {
   background: #eae8e8;
 }
 
-.chat {
-  padding: 10px;
-}
-
 .navbar {
   display: grid;
   grid-template: 50% 50% / 70px 1fr 40px;
@@ -66,7 +62,6 @@ body {
 }
 
 .search {
-
   margin: 20px auto;
   padding: 0 10px;
 
@@ -128,6 +123,7 @@ body {
 }
 
 .chat {
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -153,9 +149,39 @@ body {
 
   .chat_table {
     flex: 1;
+    max-height: 405px;
+    padding: 0 10px 20px 10px;
+    overflow: scroll;
+    box-shadow: none;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .chat_input {
     justify-self: end;
+  }
+}
+
+.message {
+  max-width: 60%;
+
+}
+
+.own {
+  align-self: end;
+
+  .css-bshv44-MuiButtonBase-root-MuiListItem-root {
+    display: flex;
+    flex-direction: row-reverse;
+
+    .css-tlelie-MuiListItemText-root {
+      padding: 5px;
+      border-radius: 10px;
+      background-color: #2196f3;
+      margin-right: 10px;
+    }
   }
 }

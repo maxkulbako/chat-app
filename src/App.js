@@ -1,4 +1,4 @@
-import {Chat, ChatList, Input, Message, Navbar, Search, Sidebar} from '../src/components'
+import {Chat, Sidebar} from '../src/components'
 
 export default function App() {
   return (
