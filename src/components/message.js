@@ -2,16 +2,18 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
 import {ListItem} from "@mui/material";
+import {mainUser} from "../store"
 
 export function Message({person, secondary, name}) {
-    let addClass = "";
-
-    if (name === "Max Kulbako") {
-        addClass = "own"
+    function isOwnMessage(data) {
+        if(data === mainUser.name) {
+            return true;
+        }
+        return false;
     }
 
     return (
-        <div className={`message ${addClass}`}>
+        <div className={`message ${isOwnMessage(name) ? "own" : ""}`}>
             <ListItem button>
                 <ListItemAvatar>
                     <Avatar alt={name} src={person} />

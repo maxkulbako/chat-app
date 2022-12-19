@@ -33,7 +33,10 @@ const StyledBadge = styled(Badge)(({theme}) => ({
     },
 }));
 
-function BadgeAvatars() {
+function BadgeAvatars({userData}) {
+    const name = userData.name;
+    const avatar = userData.avatar;
+
     return (
 
         <StyledBadge
@@ -41,8 +44,8 @@ function BadgeAvatars() {
             anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
             variant="dot"
         >
-            <Avatar alt="Max Kulbako"
-                    src="https://scontent-ber1-1.xx.fbcdn.net/v/t1.6435-9/37639516_1836232409764891_2112603969481080832_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Nta0aOq9giEAX9XbOrv&_nc_ht=scontent-ber1-1.xx&oh=00_AfCkkdQIUFQXrhSqc_g1KupNbfU5GzErqYv6Ro7_YKaTCQ&oe=63C2D293"
+            <Avatar alt={name}
+                    src={avatar}
                     sx={{width: 56, height: 56}}
             />
         </StyledBadge>
@@ -50,12 +53,12 @@ function BadgeAvatars() {
     );
 }
 
-export function PersonalBar() {
+export function PersonalBar({userData}) {
     return (
-        <div className="navbar">
-            <BadgeAvatars/>
-            <p className="navbarName">Max Kulbako</p>
-            <p className="appointment">front-end developer</p>
+        <div className="personal_bar">
+            <BadgeAvatars userData={userData}/>
+            <p className="personal_bar_name">{userData.name}</p>
+            <p className="appointment">{userData.appointment}</p>
             <IconButton className="changeBtn">
                 <CreateIcon fontSize="small"/>
             </IconButton>

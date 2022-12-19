@@ -1,3 +1,4 @@
+import {chatListUsers} from "../store/index"
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
@@ -6,11 +7,10 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-
-export function ChatList({data = usersData}) {
+export function ChatList({data = chatListUsers}) {
     const list = data.map((item, index) => (
-        <div>
-            <ChatUser key={index}
+        <div key={index}>
+            <ChatUser
                       name={item.name}
                       avatar={item.avatar}
                       lastMessage={item.lastMessage}
@@ -63,38 +63,3 @@ function ChatUser({name, avatar, lastMessage, date}) {
         </ListItemButton>
     );
 }
-
-
-const usersData = [
-    {
-        name: "Elon Mask",
-        avatar: "https://scontent-ber1-1.xx.fbcdn.net/v/t39.30808-6/245919410_105542318580455_2023978157166049344_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cgcHQ9-w5ZQAX-f-xnb&_nc_ht=scontent-ber1-1.xx&oh=00_AfCJBl3F8navsgleT-zOltyHgTlqkutsKz2XXZEFClnJ2w&oe=63A09154",
-        lastMessage: "I'll be in your neighborhood...",
-        date: "10/11/22",
-    },
-    {
-        name: "Elon Mask",
-        avatar: "https://scontent-ber1-1.xx.fbcdn.net/v/t39.30808-6/245919410_105542318580455_2023978157166049344_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cgcHQ9-w5ZQAX-f-xnb&_nc_ht=scontent-ber1-1.xx&oh=00_AfCJBl3F8navsgleT-zOltyHgTlqkutsKz2XXZEFClnJ2w&oe=63A09154",
-        lastMessage: "I'll be in your neighborhood...",
-        date: "10/11/22",
-    },
-    {
-        name: "Elon Mask",
-        avatar: "https://scontent-ber1-1.xx.fbcdn.net/v/t39.30808-6/245919410_105542318580455_2023978157166049344_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cgcHQ9-w5ZQAX-f-xnb&_nc_ht=scontent-ber1-1.xx&oh=00_AfCJBl3F8navsgleT-zOltyHgTlqkutsKz2XXZEFClnJ2w&oe=63A09154",
-        lastMessage: "I'll be in your neighborhood...",
-        date: "10/11/22",
-    },
-    {
-        name: "Elon Mask",
-        avatar: "https://scontent-ber1-1.xx.fbcdn.net/v/t39.30808-6/245919410_105542318580455_2023978157166049344_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cgcHQ9-w5ZQAX-f-xnb&_nc_ht=scontent-ber1-1.xx&oh=00_AfCJBl3F8navsgleT-zOltyHgTlqkutsKz2XXZEFClnJ2w&oe=63A09154",
-        lastMessage: "I'll be in your neighborhood...",
-        date: "10/11/22",
-    },
-    {
-        name: "Elon Mask",
-        avatar: "https://scontent-ber1-1.xx.fbcdn.net/v/t39.30808-6/245919410_105542318580455_2023978157166049344_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cgcHQ9-w5ZQAX-f-xnb&_nc_ht=scontent-ber1-1.xx&oh=00_AfCJBl3F8navsgleT-zOltyHgTlqkutsKz2XXZEFClnJ2w&oe=63A09154",
-        lastMessage: "I'll be in your neighborhood...",
-        date: "10/11/22",
-    }
-
-]

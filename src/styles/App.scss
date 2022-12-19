@@ -1,5 +1,5 @@
 body {
-  background: #7389e1;
+  background: #0288d1;
 }
 
 .chat_container {
@@ -20,7 +20,7 @@ body {
   background: #eae8e8;
 }
 
-.navbar {
+.personal_bar {
   display: grid;
   grid-template: 50% 50% / 70px 1fr 40px;
   grid-template-areas: "avatar name btn" "avatar appointment btn";
@@ -37,7 +37,7 @@ body {
       left: -1px;
     }
   }
-  .navbarName {
+  .personal_bar_name {
     grid-area: name;
     font-size: 20px;
     color: rgb(24, 87, 203);
@@ -180,7 +180,7 @@ body {
     .css-tlelie-MuiListItemText-root {
       padding: 5px;
       border-radius: 10px;
-      background-color: #2196f3;
+      background-color: #42a5f5;
       margin-right: 10px;
     }
   }
