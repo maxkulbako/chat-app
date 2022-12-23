@@ -1,4 +1,4 @@
-import {chatListUsers} from "../store/index"
+//import {chatListUsers} from "../store/index"
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
@@ -6,8 +6,10 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import {connect} from "react-redux";
 
-export function ChatList({data = chatListUsers}) {
+function ChatListView({data, current, select}) {
+
     const list = data.map((item, index) => (
         <div key={index}>
             <ChatUser
@@ -15,7 +17,8 @@ export function ChatList({data = chatListUsers}) {
                       avatar={item.avatar}
                       lastMessage={item.lastMessage}
                       date={item.date}
-                      className="chat_user"
+                      onClick={() => select(index)}
+                      setActive={ index === current ? "rgba(79, 77, 77, 0.13)" : ""}
             />
             <Divider/>
         </div>
@@ -28,14 +31,30 @@ export function ChatList({data = chatListUsers}) {
     );
 }
 
-function ChatUser({name, avatar, lastMessage, date}) {
+const mapState = state => ({
+    data: state.chatList,
+    current: state.current,
+});
 
-    const handleListItemClick = (event) => {
-        console.log("click");
-    };
+const mapDispatch = (dispatch) => ({
+    select: function (number) {
+        dispatch({
+            type: "SELECT_ITEM",
+            payload: number
+        });
+    },
+});
+
+export const ChatList = connect(mapState, mapDispatch)(ChatListView)
+
+function ChatUser({name, avatar, lastMessage, date, onClick, setActive}) {
+
+    // const handleListItemClick = (event) => {
+    //     console.log("click");
+    // };
 
     return (
-        <ListItemButton alignItems="flex-start" onClick={handleListItemClick}>
+        <ListItemButton alignItems="flex-start" onClick={onClick} sx={{background: setActive}}>
             <ListItemAvatar className={"avatar"} >
                 <Avatar alt={name} src={avatar}/>
             </ListItemAvatar>
