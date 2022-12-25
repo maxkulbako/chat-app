@@ -1,4 +1,3 @@
-//import {chatListUsers} from "../store/index"
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
@@ -7,18 +6,18 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import {connect} from "react-redux";
+import {selectChatList, setActiveChat, selectChatRoom} from '../store/chat'
 
 function ChatListView({data, current, select}) {
 
     const list = data.map((item, index) => (
         <div key={index}>
-            <ChatUser
+            <ChatListButton
                       name={item.name}
                       avatar={item.avatar}
                       lastMessage={item.lastMessage}
                       date={item.date}
-                      onClick={() => select(index)}
-                      setActive={ index === current ? "rgba(79, 77, 77, 0.13)" : ""}
+                      onClick={ () => select(item.id) }
             />
             <Divider/>
         </div>
@@ -32,29 +31,20 @@ function ChatListView({data, current, select}) {
 }
 
 const mapState = state => ({
-    data: state.chatList,
-    current: state.current,
+    data: selectChatList(state),
+    current: selectChatRoom(state),
 });
 
 const mapDispatch = (dispatch) => ({
-    select: function (number) {
-        dispatch({
-            type: "SELECT_ITEM",
-            payload: number
-        });
-    },
+    select: chatId => dispatch(setActiveChat(chatId)),
 });
 
 export const ChatList = connect(mapState, mapDispatch)(ChatListView)
 
-function ChatUser({name, avatar, lastMessage, date, onClick, setActive}) {
-
-    // const handleListItemClick = (event) => {
-    //     console.log("click");
-    // };
+function ChatListButton({name, avatar, lastMessage, date, onClick, setActive}) {
 
     return (
-        <ListItemButton alignItems="flex-start" onClick={onClick} sx={{background: setActive}}>
+        <ListItemButton alignItems="flex-start" onClick={onClick} >
             <ListItemAvatar className={"avatar"} >
                 <Avatar alt={name} src={avatar}/>
             </ListItemAvatar>
