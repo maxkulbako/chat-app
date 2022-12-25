@@ -1,7 +1,7 @@
-import * as actions from './actions'
+import {setActiveRoom} from "./actions";
 
 const initialState = {
-    current: null,
+    activeRoom: 3,
     list: [
         {
             id: 1,
@@ -9,7 +9,7 @@ const initialState = {
             avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/1200px-Elon_Musk_Royal_Society_%28crop2%29.jpg",
             lastMessage: "I'll be in your neighborhood...",
             date: "10/11/22",
-            messages: ["no messages"],
+            messages: [],
         },
         {
             id: 2,
@@ -17,7 +17,7 @@ const initialState = {
             avatar: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Mark_Zuckerberg_F8_2018_Keynote_%28cropped%29.jpg",
             lastMessage: "I'll be in your neighborhood...",
             date: "10/11/22",
-            messages: ["no messages"],
+            messages: [],
         },
         {
             id: 3,
@@ -87,7 +87,7 @@ const initialState = {
             avatar: "https://media.gq-magazin.de/photos/60a22ace01d3a5b659ebb005/3:4/w_1830,h_2440,c_limit/larry%20page-495431362.jpg",
             lastMessage: "I'll be in your neighborhood...",
             date: "10/11/22",
-            messages: ["no messages"],
+            messages: [],
 
         },
         {   id: 5,
@@ -95,25 +95,21 @@ const initialState = {
             avatar: "https://image.gala.de/22514806/t/IE/v4/w960/r0.6667/-/kim-kardashian.jpg",
             lastMessage: "I'll be in your neighborhood...",
             date: "10/11/22",
-            messages: ["no messages"],
+            messages: [],
         }
 
     ],
 }
 
-export function activeChatReducer (state = initialState, action) {
+export function chatRoomsReducer (state = initialState, action) {
     switch (action.type) {
-        case actions.setActiveChat.TYPE:
-            return  {
+        case setActiveRoom.TYPE:
+            return {
                 ...state,
-                current: action.payload
+                activeRoom: action.payload,
             }
+
         default:
             return state;
-    };
-};
-
-export function chatRoomsReducer (state = initialState) {
-
-    return state.list;
+    }
 }

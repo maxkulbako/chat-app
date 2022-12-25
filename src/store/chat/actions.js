@@ -1,3 +1,3 @@
 import { createPayloadAction } from '../_helpers';
 
-export const setActiveChat = createPayloadAction('chatroom.select');
+export const setActiveRoom = createPayloadAction('chatRoom.select');

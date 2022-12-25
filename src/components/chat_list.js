@@ -5,19 +5,18 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import {connect} from "react-redux";
-import {selectChatList, setActiveChat, selectChatRoom} from '../store/chat'
 
-function ChatListView({data, current, select}) {
+export function ChatList({chatList, onSelect , activeRoomList}) {
 
-    const list = data.map((item, index) => (
-        <div key={index}>
+    const list = chatList.map((item, index) => (
+        <div key={item.id}>
             <ChatListButton
                       name={item.name}
                       avatar={item.avatar}
                       lastMessage={item.lastMessage}
                       date={item.date}
-                      onClick={ () => select(item.id) }
+                      onClick={ () => onSelect(item.id) }
+                      isSelected = {activeRoomList === item.id}
             />
             <Divider/>
         </div>
@@ -30,21 +29,10 @@ function ChatListView({data, current, select}) {
     );
 }
 
-const mapState = state => ({
-    data: selectChatList(state),
-    current: selectChatRoom(state),
-});
-
-const mapDispatch = (dispatch) => ({
-    select: chatId => dispatch(setActiveChat(chatId)),
-});
-
-export const ChatList = connect(mapState, mapDispatch)(ChatListView)
-
-function ChatListButton({name, avatar, lastMessage, date, onClick, setActive}) {
+function ChatListButton({name, avatar, lastMessage, date, onClick, isSelected}) {
 
     return (
-        <ListItemButton alignItems="flex-start" onClick={onClick} >
+        <ListItemButton selected={isSelected} alignItems="flex-start" onClick={onClick} >
             <ListItemAvatar className={"avatar"} >
                 <Avatar alt={name} src={avatar}/>
             </ListItemAvatar>

@@ -13,7 +13,6 @@ import Paper from '@mui/material/Paper';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import * as React from "react";
-import {messagesData} from "../store"
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -59,9 +58,9 @@ function ChatHeader({name, avatar}) {
     );
 }
 
-export function ChatRoom({messages = messagesData}) {
-    const name = messages[3].name;
-    const avatar = messages[3].person;
+export function ChatRoom({activeRoom}) {
+    const name = activeRoom.name;
+    const avatar = activeRoom.avatar;
 
     return (
         <div className="chat">
@@ -69,7 +68,7 @@ export function ChatRoom({messages = messagesData}) {
             <Divider/>
             <Paper className={"chat_table"}>
                 <List sx={{ mb: 2 }}>
-                    {messages.map(({ id, secondary, person, name }) => (
+                    {activeRoom.messages.map(({ id, secondary, person, name }) => (
                         <React.Fragment key={id}>
                             {id === 1 && (
                                 <ListSubheader sx={{ bgcolor: 'background.paper' }}>
