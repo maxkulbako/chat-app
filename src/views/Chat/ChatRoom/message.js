@@ -2,7 +2,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
 import {ListItem} from "@mui/material";
-import {mainUser} from "../store"
+import {mainUser} from "../../../store"
 
 export function Message({person, secondary, name}) {
     function isOwnMessage(data) {

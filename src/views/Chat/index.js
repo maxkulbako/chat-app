@@ -1,6 +1,6 @@
-import {Sidebar} from "./sidebar";
-import {ChatRoom} from "./chatRoom";
-import {selectChatList, selectChatRoomActiveRoom, setActiveRoom, selectActiveChatList} from "../store/chat";
+import {Sidebar} from "./SideBar";
+import {ChatRoom} from "./ChatRoom";
+import {selectChatList, selectChatRoomActiveRoom, setActiveRoom, selectActiveChatList} from "../../store/chat";
 import {connect} from "react-redux";
 
 export function ChatView ({chatList, selectChatRoom, activeRoom, activeRoomList}) {

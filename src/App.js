@@ -1,4 +1,4 @@
-import {Chat} from '../src/components'
+import {Chat} from './views/Chat/index'
 
 export default function App() {
   return (
