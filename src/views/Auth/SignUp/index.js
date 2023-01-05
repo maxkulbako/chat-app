@@ -28,7 +28,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export function SignUp() {
+export function AuthSignUp() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);

@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '../src/styles/index.css';
-import App from './App';
-import {Provider as ReduxProvider} from 'react-redux'
-import {store} from '@store/index'
+import {Provider as ReduxProvider} from 'react-redux';
+import { RouterProvider } from 'react-router-dom';
+import {store} from '@store';
+import {routes} from './store/router';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
           <ReduxProvider store={store}>
-              <App />
+              <RouterProvider router={routes} />
           </ReduxProvider>
   </React.StrictMode>
 );
