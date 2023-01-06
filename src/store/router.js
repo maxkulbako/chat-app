@@ -1,12 +1,20 @@
+import { Chat } from '@views/Chat';
 import App from '../App';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { AuthSignIn, AuthSignUp, AuthForgot } from '../views/Auth';
+import { AuthSignIn, AuthSignUp, AuthForgot } from '@views/Auth';
 
 export const routes = createBrowserRouter([
   {
     path: '/',
-    element: <App />
+    element: <App />,
+    children: [
+      {
+        index: true,
+        path: ':roomId',
+        element: <Chat />
+      }
+    ]
   },
   {
     path: '/signin',

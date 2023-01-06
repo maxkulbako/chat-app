@@ -1,7 +1,7 @@
 import { PersonalBar } from './personal_bar';
 import { Search } from './search';
 import { ChatList } from './chat_list';
-import { mainUser } from '../../../store';
+import { mainUser } from '@store/constants';
 
 export function Sidebar ({ chatList, onSelect, activeRoomList }) {
   return (

@@ -5,18 +5,26 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
+
+const StyleLink = styled(Link)({
+  textDecoration: 'none'
+});
 
 export function ChatList ({ chatList, onSelect, activeRoomList }) {
-  const list = chatList.map((item, index) => (
+  const list = chatList.map((item) => (
     <div key={item.id}>
-      <ChatListButton
-        name={item.name}
-        avatar={item.avatar}
-        lastMessage={item.lastMessage}
-        date={item.date}
-        onClick={ () => onSelect(item.id) }
-        isSelected = {activeRoomList === item.id}
-      />
+      <StyleLink to={`/${item.id}`}>
+        <ChatListButton
+          name={item.name}
+          avatar={item.avatar}
+          lastMessage={item.lastMessage}
+          date={item.date}
+          onClick={() => onSelect(item.id)}
+          isSelected = {activeRoomList === item.id}
+        />
+      </StyleLink>
       <Divider/>
     </div>
   ));
