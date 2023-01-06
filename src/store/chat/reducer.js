@@ -1,115 +1,116 @@
-import {setActiveRoom} from "./actions";
+import { setActiveRoom } from './actions';
 
 const initialState = {
-    activeRoom: 3,
-    list: [
+  activeRoom: 3,
+  list: [
+    {
+      id: 1,
+      name: 'Elon Mask',
+      avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/1200px-Elon_Musk_Royal_Society_%28crop2%29.jpg',
+      lastMessage: 'I\'ll be in your neighborhood...',
+      date: '10/11/22',
+      messages: []
+    },
+    {
+      id: 2,
+      name: 'Mark Zuckerberg',
+      avatar: 'https://upload.wikimedia.org/wikipedia/commons/c/c4/Mark_Zuckerberg_F8_2018_Keynote_%28cropped%29.jpg',
+      lastMessage: 'I\'ll be in your neighborhood...',
+      date: '10/11/22',
+      messages: []
+    },
+    {
+      id: 3,
+      name: 'Jeff Bezos',
+      avatar: 'https://image.capital.de/31027178/t/pO/v1/w960/r0/-/bezos-final-0404-jpg.jpg',
+      lastMessage: 'I\'ll be in your neighborhood...',
+      date: '10/11/22',
+      messages: [
         {
-            id: 1,
-            name: "Elon Mask",
-            avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/1200px-Elon_Musk_Royal_Society_%28crop2%29.jpg",
-            lastMessage: "I'll be in your neighborhood...",
-            date: "10/11/22",
-            messages: [],
+          id: 1,
+          primary: 'Brunch this week?',
+          name: 'Max Kulbako',
+          secondary: 'I\'ll be in the neighbourhood this week. Let\'s grab a bite to eat',
+          person: 'https://scontent-ber1-1.xx.fbcdn.net/v/t1.6435-9/37639516_1836232409764891_2112603969481080832_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Nta0aOq9giEAX9XbOrv&_nc_ht=scontent-ber1-1.xx&oh=00_AfCkkdQIUFQXrhSqc_g1KupNbfU5GzErqYv6Ro7_YKaTCQ&oe=63C2D293'
         },
         {
-            id: 2,
-            name: "Mark Zuckerberg",
-            avatar: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Mark_Zuckerberg_F8_2018_Keynote_%28cropped%29.jpg",
-            lastMessage: "I'll be in your neighborhood...",
-            date: "10/11/22",
-            messages: [],
-        },
-        {
-            id: 3,
-            name: "Jeff Bezos",
-            avatar: "https://image.capital.de/31027178/t/pO/v1/w960/r0/-/bezos-final-0404-jpg.jpg",
-            lastMessage: "I'll be in your neighborhood...",
-            date: "10/11/22",
-            messages: [
-                {
-                    id: 1,
-                    primary: 'Brunch this week?',
-                    name: 'Max Kulbako',
-                    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-                    person: 'https://scontent-ber1-1.xx.fbcdn.net/v/t1.6435-9/37639516_1836232409764891_2112603969481080832_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Nta0aOq9giEAX9XbOrv&_nc_ht=scontent-ber1-1.xx&oh=00_AfCkkdQIUFQXrhSqc_g1KupNbfU5GzErqYv6Ro7_YKaTCQ&oe=63C2D293',
-                },
-                {
-                    id: 2,
-                    primary: 'Birthday Gift',
-                    name: 'Jeff Bezos',
-                    secondary: `Do you have a suggestion for a good present for John on his work
+          id: 2,
+          primary: 'Birthday Gift',
+          name: 'Jeff Bezos',
+          secondary: `Do you have a suggestion for a good present for John on his work
       anniversary. I am really confused & would love your thoughts on it.`,
-                    person: 'https://image.capital.de/31027178/t/pO/v1/w960/r0/-/bezos-final-0404-jpg.jpg',
-                },
-                {
-                    id: 3,
-                    primary: 'Recipe to try',
-                    name: 'Max Kulbako',
-                    secondary: 'I am try out this new BBQ recipe, I think this might be amazing',
-                    person: 'https://scontent-ber1-1.xx.fbcdn.net/v/t1.6435-9/37639516_1836232409764891_2112603969481080832_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Nta0aOq9giEAX9XbOrv&_nc_ht=scontent-ber1-1.xx&oh=00_AfCkkdQIUFQXrhSqc_g1KupNbfU5GzErqYv6Ro7_YKaTCQ&oe=63C2D293',
-                },
-                {
-                    id: 4,
-                    primary: 'Yes!',
-                    name: 'Jeff Bezos',
-                    secondary: 'I have the tickets to the ReactConf for this year.',
-                    person: 'https://image.capital.de/31027178/t/pO/v1/w960/r0/-/bezos-final-0404-jpg.jpg',
-                },
-                {
-                    id: 5,
-                    primary: "Doctor's Appointment",
-                    name: 'Jeff Bezos',
-                    secondary: 'My appointment for the doctor was rescheduled for next Saturday.',
-                    person: 'https://image.capital.de/31027178/t/pO/v1/w960/r0/-/bezos-final-0404-jpg.jpg',
-                },
-                {
-                    id: 6,
-                    primary: 'Discussion',
-                    name: 'Max Kulbako',
-                    secondary: `Menus that are generated by the bottom app bar (such as a bottom
+          person: 'https://image.capital.de/31027178/t/pO/v1/w960/r0/-/bezos-final-0404-jpg.jpg'
+        },
+        {
+          id: 3,
+          primary: 'Recipe to try',
+          name: 'Max Kulbako',
+          secondary: 'I am try out this new BBQ recipe, I think this might be amazing',
+          person: 'https://scontent-ber1-1.xx.fbcdn.net/v/t1.6435-9/37639516_1836232409764891_2112603969481080832_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Nta0aOq9giEAX9XbOrv&_nc_ht=scontent-ber1-1.xx&oh=00_AfCkkdQIUFQXrhSqc_g1KupNbfU5GzErqYv6Ro7_YKaTCQ&oe=63C2D293'
+        },
+        {
+          id: 4,
+          primary: 'Yes!',
+          name: 'Jeff Bezos',
+          secondary: 'I have the tickets to the ReactConf for this year.',
+          person: 'https://image.capital.de/31027178/t/pO/v1/w960/r0/-/bezos-final-0404-jpg.jpg'
+        },
+        {
+          id: 5,
+          primary: 'Doctor\'s Appointment',
+          name: 'Jeff Bezos',
+          secondary: 'My appointment for the doctor was rescheduled for next Saturday.',
+          person: 'https://image.capital.de/31027178/t/pO/v1/w960/r0/-/bezos-final-0404-jpg.jpg'
+        },
+        {
+          id: 6,
+          primary: 'Discussion',
+          name: 'Max Kulbako',
+          secondary: `Menus that are generated by the bottom app bar (such as a bottom
       navigation drawer or overflow menu) open as bottom sheets at a higher elevation
       than the bar.`,
-                    person: 'https://scontent-ber1-1.xx.fbcdn.net/v/t1.6435-9/37639516_1836232409764891_2112603969481080832_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Nta0aOq9giEAX9XbOrv&_nc_ht=scontent-ber1-1.xx&oh=00_AfCkkdQIUFQXrhSqc_g1KupNbfU5GzErqYv6Ro7_YKaTCQ&oe=63C2D293',
-                },
-                {
-                    id: 7,
-                    primary: 'Summer BBQ',
-                    name: 'Jeff Bezos',
-                    secondary: `Who wants to have a cookout this weekend? I just got some furniture
-      for my backyard and would love to fire up the grill.`,
-                    person: 'https://image.capital.de/31027178/t/pO/v1/w960/r0/-/bezos-final-0404-jpg.jpg',
-                },
-            ],
+          person: 'https://scontent-ber1-1.xx.fbcdn.net/v/t1.6435-9/37639516_1836232409764891_2112603969481080832_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Nta0aOq9giEAX9XbOrv&_nc_ht=scontent-ber1-1.xx&oh=00_AfCkkdQIUFQXrhSqc_g1KupNbfU5GzErqYv6Ro7_YKaTCQ&oe=63C2D293'
         },
         {
-            id: 4,
-            name: "Larry Page",
-            avatar: "https://media.gq-magazin.de/photos/60a22ace01d3a5b659ebb005/3:4/w_1830,h_2440,c_limit/larry%20page-495431362.jpg",
-            lastMessage: "I'll be in your neighborhood...",
-            date: "10/11/22",
-            messages: [],
-
-        },
-        {   id: 5,
-            name: "Kim Kardashian",
-            avatar: "https://image.gala.de/22514806/t/IE/v4/w960/r0.6667/-/kim-kardashian.jpg",
-            lastMessage: "I'll be in your neighborhood...",
-            date: "10/11/22",
-            messages: [],
+          id: 7,
+          primary: 'Summer BBQ',
+          name: 'Jeff Bezos',
+          secondary: `Who wants to have a cookout this weekend? I just got some furniture
+      for my backyard and would love to fire up the grill.`,
+          person: 'https://image.capital.de/31027178/t/pO/v1/w960/r0/-/bezos-final-0404-jpg.jpg'
         }
+      ]
+    },
+    {
+      id: 4,
+      name: 'Larry Page',
+      avatar: 'https://media.gq-magazin.de/photos/60a22ace01d3a5b659ebb005/3:4/w_1830,h_2440,c_limit/larry%20page-495431362.jpg',
+      lastMessage: 'I\'ll be in your neighborhood...',
+      date: '10/11/22',
+      messages: []
 
-    ],
-}
+    },
+    {
+      id: 5,
+      name: 'Kim Kardashian',
+      avatar: 'https://image.gala.de/22514806/t/IE/v4/w960/r0.6667/-/kim-kardashian.jpg',
+      lastMessage: 'I\'ll be in your neighborhood...',
+      date: '10/11/22',
+      messages: []
+    }
+
+  ]
+};
 
 export function chatRoomsReducer (state = initialState, action) {
-    switch (action.type) {
-        case setActiveRoom.TYPE:
-            return {
-                ...state,
-                activeRoom: action.payload,
-            }
+  switch (action.type) {
+  case setActiveRoom.TYPE:
+    return {
+      ...state,
+      activeRoom: action.payload
+    };
 
-        default:
-            return state;
-    }
+  default:
+    return state;
+  }
 }

@@ -1,20 +1,20 @@
-export function createAction(type) {
-    const actionCreator = () => ({type});
-    actionCreator.TYPE = type;
+export function createAction (type) {
+  const actionCreator = () => ({ type });
+  actionCreator.TYPE = type;
 
-    return actionCreator;
+  return actionCreator;
 }
 
-export function createErrorAction(type) {
-    const actionCreator = () => ({type});
-    actionCreator.TYPE = type;
+export function createErrorAction (type) {
+  const actionCreator = () => ({ type });
+  actionCreator.TYPE = type;
 
-    return actionCreator;
+  return actionCreator;
 }
 
-export function createPayloadAction(type) {
-    const actionCreator = payload => ({type, payload});
-    actionCreator.TYPE = type;
+export function createPayloadAction (type) {
+  const actionCreator = payload => ({ type, payload });
+  actionCreator.TYPE = type;
 
-    return actionCreator;
-};
+  return actionCreator;
+}

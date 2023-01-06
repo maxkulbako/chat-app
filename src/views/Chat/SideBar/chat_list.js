@@ -6,57 +6,55 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-export function ChatList({chatList, onSelect , activeRoomList}) {
+export function ChatList ({ chatList, onSelect, activeRoomList }) {
+  const list = chatList.map((item, index) => (
+    <div key={item.id}>
+      <ChatListButton
+        name={item.name}
+        avatar={item.avatar}
+        lastMessage={item.lastMessage}
+        date={item.date}
+        onClick={ () => onSelect(item.id) }
+        isSelected = {activeRoomList === item.id}
+      />
+      <Divider/>
+    </div>
+  ));
 
-    const list = chatList.map((item, index) => (
-        <div key={item.id}>
-            <ChatListButton
-                      name={item.name}
-                      avatar={item.avatar}
-                      lastMessage={item.lastMessage}
-                      date={item.date}
-                      onClick={ () => onSelect(item.id) }
-                      isSelected = {activeRoomList === item.id}
-            />
-            <Divider/>
-        </div>
-    ));
-
-    return (
-        <div className="chat_list">
-            <List sx={{ width: '100%'}}>{list}</List>
-        </div>
-    );
+  return (
+    <div className="chat_list">
+      <List sx={{ width: '100%' }}>{list}</List>
+    </div>
+  );
 }
 
-function ChatListButton({name, avatar, lastMessage, date, onClick, isSelected}) {
-
-    return (
-        <ListItemButton selected={isSelected} alignItems="flex-start" onClick={onClick} >
-            <ListItemAvatar className={"avatar"} >
-                <Avatar alt={name} src={avatar}/>
-            </ListItemAvatar>
-            <ListItemText
-                className={"name_message"}
-                primary={
-                    <Typography
-                        color="rgb(24, 87, 203)"
-                    >
-                        {name}
-                    </Typography>
-                }
-                secondary={
-                    <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="body2"
-                        color="text.secondary"
-                    >
-                        {lastMessage}
-                    </Typography>
-                }
-            />
-            <div className="date">{date}</div>
-        </ListItemButton>
-    );
+function ChatListButton ({ name, avatar, lastMessage, date, onClick, isSelected }) {
+  return (
+    <ListItemButton selected={isSelected} alignItems="flex-start" onClick={onClick} >
+      <ListItemAvatar className={'avatar'} >
+        <Avatar alt={name} src={avatar}/>
+      </ListItemAvatar>
+      <ListItemText
+        className={'name_message'}
+        primary={
+          <Typography
+            color="rgb(24, 87, 203)"
+          >
+            {name}
+          </Typography>
+        }
+        secondary={
+          <Typography
+            sx={{ display: 'inline' }}
+            component="span"
+            variant="body2"
+            color="text.secondary"
+          >
+            {lastMessage}
+          </Typography>
+        }
+      />
+      <div className="date">{date}</div>
+    </ListItemButton>
+  );
 }
