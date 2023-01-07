@@ -1,7 +1,7 @@
 import { setActiveRoom } from './actions';
 
 const initialState = {
-  activeRoom: 3,
+  activeRoom: null,
   list: [
     {
       id: 1,

@@ -1,17 +1,24 @@
 import { Sidebar } from './SideBar';
 import { ChatRoom } from './ChatRoom';
-import { selectChatList, selectChatRoomActiveRoom, setActiveRoom, selectActiveChatList } from '../../store/chat';
+import { selectChatList, selectChatRoomActiveRoom, setActiveRoom, selectActiveChatList } from '@store/chat';
 import { connect } from 'react-redux';
+import { Box, Typography } from '@mui/material';
 
-// eslint-disable-next-line react/prop-types
 export function ChatView ({ chatList, selectChatRoom, activeRoom, activeRoomList }) {
   return (
     <div className="chat_container">
       <Sidebar className="sidebar" chatList={chatList} onSelect={selectChatRoom} activeRoomList={activeRoomList}/>
-      <ChatRoom className="active_chatRoom" activeRoom={activeRoom}/>
+      {activeRoom
+        ? <ChatRoom className="active_chatRoom" activeRoom={activeRoom}/>
+        : <Box sx={{ justifySelf: 'center', alignSelf: 'center' }}>
+          <Typography>
+              Choose who you would like to write to...
+          </Typography>
+        </Box>
+      }
     </div>
   );
-};
+}
 
 const mapState = state => ({
   chatList: selectChatList(state),
