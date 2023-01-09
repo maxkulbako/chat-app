@@ -10,6 +10,10 @@ export const routes = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: '',
+        element: <Chat />
+      },
+      {
         index: true,
         path: ':roomId',
         element: <Chat />
