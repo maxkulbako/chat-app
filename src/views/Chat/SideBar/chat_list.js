@@ -5,6 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 
@@ -30,9 +31,9 @@ export function ChatList ({ chatList, onSelect, activeRoomList }) {
   ));
 
   return (
-    <div className="chat_list">
+    <Box className="chat_list" >
       <List sx={{ width: '100%' }}>{list}</List>
-    </div>
+    </Box>
   );
 }
 

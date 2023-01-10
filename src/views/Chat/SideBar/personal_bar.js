@@ -1,8 +1,6 @@
 import { styled } from '@mui/material/styles';
-import Badge from '@mui/material/Badge';
-import Avatar from '@mui/material/Avatar';
 import CreateIcon from '@mui/icons-material/Create';
-import IconButton from '@mui/material/IconButton';
+import { IconButton, Badge, Avatar, Grid, Box, Typography } from '@mui/material';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -11,8 +9,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
     '&::after': {
       position: 'absolute',
-      top: 0,
-      left: 0,
+      top: '-1px',
+      left: '-1px',
       width: '100%',
       height: '100%',
       borderRadius: '50%',
@@ -38,7 +36,6 @@ function BadgeAvatars ({ userData }) {
   const avatar = userData.avatar;
 
   return (
-
     <StyledBadge
       overlap="circular"
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -49,19 +46,28 @@ function BadgeAvatars ({ userData }) {
         sx={{ width: 56, height: 56 }}
       />
     </StyledBadge>
-
   );
 }
 
 export function PersonalBar ({ userData }) {
   return (
-    <div className="personal_bar">
-      <BadgeAvatars userData={userData}/>
-      <p className="personal_bar_name">{userData.name}</p>
-      <p className="appointment">{userData.appointment}</p>
-      <IconButton className="changeBtn">
-        <CreateIcon fontSize="small"/>
-      </IconButton>
-    </div>
+    <Box sx={{ padding: '0 10px' }}>
+      <Grid container spacing={2}>
+        <Grid item>
+          <BadgeAvatars userData={userData}/>
+        </Grid>
+        <Grid item xs={12} sm container>
+          <Grid item xs container direction='column'>
+            <Typography gutterBottom variant="subtitle1" component="div" color='primary'>{userData.name}</Typography>
+            <Typography variant="body2" color="text.secondary">{userData.appointment}</Typography>
+          </Grid>
+          <Grid>
+            <IconButton >
+              <CreateIcon fontSize="small"/>
+            </IconButton>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
