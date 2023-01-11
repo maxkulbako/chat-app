@@ -1,3 +1,5 @@
+import { selectChatList } from '@store/chat';
+import { useParams } from 'react-router-dom';
 import { Message } from './message';
 import { Input } from './input';
 import Divider from '@mui/material/Divider';
@@ -13,22 +15,13 @@ import Paper from '@mui/material/Paper';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import * as React from 'react';
+import { connect } from 'react-redux';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     backgroundColor: '#44b700',
     color: '#44b700',
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`
-    // '&::after': {
-    //     position: 'absolute',
-    //     top: 0,
-    //     left: 0,
-    //     width: '100%',
-    //     height: '100%',
-    //     borderRadius: '50%',
-    //     border: '1px solid currentColor',
-    //     content: '""',
-    // },
   }
 }));
 
@@ -58,7 +51,9 @@ function ChatHeader ({ name, avatar }) {
   );
 }
 
-export function ChatRoom ({ activeRoom }) {
+export function ChatRoomView ({ chatList }) {
+  const { roomId } = useParams();
+  const activeRoom = chatList.find(item => item.id === roomId);
   const name = activeRoom.name;
   const avatar = activeRoom.avatar;
 
@@ -92,3 +87,9 @@ export function ChatRoom ({ activeRoom }) {
     </div>
   );
 }
+
+const mapState = state => ({
+  chatList: selectChatList(state)
+});
+
+export const ChatRoom = connect(mapState)(ChatRoomView);

@@ -1,4 +1,6 @@
 import { Chat } from '@views/Chat';
+import { ChatRoom } from '@views/Chat/ChatRoom';
+import { EmptyRoom } from '@views/Chat/EmptyRoom';
 import App from '../App';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -10,13 +12,17 @@ export const routes = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '',
-        element: <Chat />
-      },
-      {
-        index: true,
-        path: ':roomId',
-        element: <Chat />
+        element: <Chat />,
+        children: [
+          {
+            index: true,
+            element: <EmptyRoom/>
+          },
+          {
+            path: ':roomId',
+            element: <ChatRoom />
+          }
+        ]
       }
     ]
   },

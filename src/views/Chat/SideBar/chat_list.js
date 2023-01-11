@@ -6,14 +6,15 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 
 const StyleLink = styled(Link)({
   textDecoration: 'none'
 });
 
-export function ChatList ({ chatList, onSelect, activeRoomList }) {
+export function ChatList ({ chatList }) {
+  const { roomId } = useParams();
   const list = chatList.map((item) => (
     <div key={item.id}>
       <StyleLink to={`/${item.id}`}>
@@ -22,8 +23,7 @@ export function ChatList ({ chatList, onSelect, activeRoomList }) {
           avatar={item.avatar}
           lastMessage={item.lastMessage}
           date={item.date}
-          onClick={() => onSelect(item.id)}
-          isSelected = {activeRoomList === item.id}
+          isSelected = {roomId === item.id}
         />
       </StyleLink>
       <Divider/>
@@ -37,9 +37,9 @@ export function ChatList ({ chatList, onSelect, activeRoomList }) {
   );
 }
 
-function ChatListButton ({ name, avatar, lastMessage, date, onClick, isSelected }) {
+function ChatListButton ({ name, avatar, lastMessage, date, isSelected }) {
   return (
-    <ListItemButton selected={isSelected} alignItems="flex-start" onClick={onClick} >
+    <ListItemButton selected={isSelected} alignItems="flex-start" >
       <ListItemAvatar className={'avatar'} >
         <Avatar alt={name} src={avatar}/>
       </ListItemAvatar>

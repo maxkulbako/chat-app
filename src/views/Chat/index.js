@@ -1,8 +1,8 @@
+import { Outlet } from 'react-router-dom';
 import { Sidebar } from './SideBar';
-import { ChatRoom } from './ChatRoom';
-import { selectChatList, selectChatRoomActiveRoom, setActiveRoom, selectActiveChatList } from '@store/chat';
+import { selectChatList } from '@store/chat';
 import { connect } from 'react-redux';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const ChatContainer = styled(Box)({
@@ -18,30 +18,17 @@ const ChatContainer = styled(Box)({
   overflow: 'hidden'
 });
 
-export function ChatView ({ chatList, selectChatRoom, activeRoom, activeRoomList }) {
+export function ChatView ({ chatList }) {
   return (
     <ChatContainer>
-      <Sidebar className="sidebar" chatList={chatList} onSelect={selectChatRoom} activeRoomList={activeRoomList}/>
-      {activeRoom
-        ? <ChatRoom className="active_chatRoom" activeRoom={activeRoom}/>
-        : <Box sx={{ justifySelf: 'center', alignSelf: 'center' }}>
-          <Typography>
-              Choose who you would like to write to...
-          </Typography>
-        </Box>
-      }
+      <Sidebar className="sidebar" chatList={chatList}/>
+      <Outlet/>
     </ChatContainer>
   );
 }
 
 const mapState = state => ({
-  chatList: selectChatList(state),
-  activeRoom: selectChatRoomActiveRoom(state),
-  activeRoomList: selectActiveChatList(state)
+  chatList: selectChatList(state)
 });
 
-const mapDispatch = (dispatch) => ({
-  selectChatRoom: (roomId) => dispatch(setActiveRoom(roomId))
-});
-
-export const Chat = connect(mapState, mapDispatch)(ChatView);
+export const Chat = connect(mapState)(ChatView);
