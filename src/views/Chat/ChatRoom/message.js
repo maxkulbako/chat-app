@@ -5,7 +5,7 @@ import { ListItem, Box, Typography } from '@mui/material';
 import { mainUser } from '@store/constants';
 import { useTheme } from '@mui/material/styles';
 
-export function Message ({ person, secondary, name }) {
+export function Message ({ avatar, secondary, name }) {
   const theme = useTheme();
   const isMainUser = mainUser.name === name;
 
@@ -18,7 +18,7 @@ export function Message ({ person, secondary, name }) {
           flexDirection: isMainUser ? 'row-reverse' : ''
         }} button>
         <ListItemAvatar>
-          <Avatar alt={name} src={person} sx={{ marginLeft: isMainUser ? '8px' : '' }} />
+          <Avatar alt={name} src={avatar} sx={{ marginLeft: isMainUser ? '8px' : '' }} />
         </ListItemAvatar>
         <ListItemText secondary={
           <Typography variant='body2'

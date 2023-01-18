@@ -67,14 +67,14 @@ export function ChatRoomView ({ chatList }) {
   const avatar = activeRoom.avatar;
 
   return (
-    <Grid container direction='column' justifyContent='space-between' sx={{ height: '100%', flexWrap: 'noWrap' }} xs>
+    <Grid container direction='column' justifyContent='space-between' sx={{ height: '100%', flexWrap: 'noWrap' }} item xs>
       <Grid>
         <ChatHeader name={name} avatar={avatar}/>
         <Divider/>
       </Grid>
       <Grid sx={{ overflow: 'auto' }}>
         <List sx={{ mb: 3 }}>
-          {activeRoom.messages.map(({ id, secondary, person, name }) => (
+          {activeRoom.messages.map(({ id, secondary, name }) => (
             <React.Fragment key={id}>
               {id === '1' && (
                 <ListSubheader sx={{ bgcolor: 'background.paper' }}>
@@ -88,7 +88,7 @@ export function ChatRoomView ({ chatList }) {
                 </ListSubheader>
               )}
 
-              <Message secondary={secondary} person={person} name={name}/>
+              <Message secondary={secondary} avatar={avatar} name={name}/>
             </React.Fragment>
           ))}
         </List>
