@@ -11,9 +11,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import Paper from '@mui/material/Paper';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
+import { Grid, Box, Typography } from '@mui/material';
 import * as React from 'react';
 import { connect } from 'react-redux';
 
@@ -27,27 +27,36 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 function ChatHeader ({ name, avatar }) {
   return (
-    <div className={'chat_header'}>
-      <div className={'activeChatUser_info'}>
-        <Avatar alt={name}
-          src={avatar}
-          sx={{ width: 46, height: 46 }}
-        />
-        <span> {name}</span>
-        <StyledBadge
-          overlap="circular"
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          variant="dot"
-        >
-        </StyledBadge>
-      </div>
-      <div className={'activeChat_buttons'}>
-        <IconButton size="large" aria-label="search" color="inherit">
-          <SearchIcon />
-        </IconButton>
-        <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color={'warning'} />} />
-      </div>
-    </div>
+    <Box>
+      <Grid item container alignItems='center' justifyContent='space-between' sx={{ padding: '10px 10px 10px 0' }}>
+        <Grid container direction='row' sx={{ width: 'fit-content', columnGap: '15px' }} >
+          <Grid>
+            <Avatar
+              alt={name}
+              src={avatar}
+              sx={{ width: 46, height: 46 }}
+            />
+          </Grid>
+          <Grid>
+            <Typography> {name}</Typography>
+          </Grid>
+          <Grid>
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              variant="dot"
+            >
+            </StyledBadge>
+          </Grid>
+        </Grid>
+        <Grid>
+          <IconButton size="large" aria-label="search" color="inherit">
+            <SearchIcon />
+          </IconButton>
+          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color={'warning'} />} />
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
@@ -58,22 +67,24 @@ export function ChatRoomView ({ chatList }) {
   const avatar = activeRoom.avatar;
 
   return (
-    <div className="chat">
-      <ChatHeader name={name} avatar={avatar}/>
-      <Divider/>
-      <Paper className={'chat_table'}>
-        <List sx={{ mb: 2 }}>
+    <Grid container direction='column' justifyContent='space-between' sx={{ height: '100%', flexWrap: 'noWrap' }} xs>
+      <Grid>
+        <ChatHeader name={name} avatar={avatar}/>
+        <Divider/>
+      </Grid>
+      <Grid sx={{ overflow: 'auto' }}>
+        <List sx={{ mb: 3 }}>
           {activeRoom.messages.map(({ id, secondary, person, name }) => (
             <React.Fragment key={id}>
-              {id === 1 && (
+              {id === '1' && (
                 <ListSubheader sx={{ bgcolor: 'background.paper' }}>
-                                    Yesterday
+                  Yesterday
                 </ListSubheader>
               )}
 
-              {id === 3 && (
+              {id === '3' && (
                 <ListSubheader sx={{ bgcolor: 'background.paper' }}>
-                                    Today
+                  Today
                 </ListSubheader>
               )}
 
@@ -81,10 +92,12 @@ export function ChatRoomView ({ chatList }) {
             </React.Fragment>
           ))}
         </List>
-      </Paper>
-      <Divider sx={{ marginBottom: '10px' }}/>
-      <Input/>
-    </div>
+      </Grid>
+      <Grid>
+        <Divider/>
+        <Input/>
+      </Grid>
+    </Grid>
   );
 }
 

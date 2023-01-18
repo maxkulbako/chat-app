@@ -1,5 +1,5 @@
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -16,7 +16,7 @@ const StyleLink = styled(Link)({
 export function ChatList ({ chatList }) {
   const { roomId } = useParams();
   const list = chatList.map((item) => (
-    <div key={item.id}>
+    <Box key={item.id}>
       <StyleLink to={`/${item.id}`}>
         <ChatListButton
           name={item.name}
@@ -27,27 +27,24 @@ export function ChatList ({ chatList }) {
         />
       </StyleLink>
       <Divider/>
-    </div>
+    </Box>
   ));
 
   return (
-    <Box className="chat_list" >
-      <List sx={{ width: '100%' }}>{list}</List>
-    </Box>
+    <List sx={{ height: '460px', overflow: 'auto', width: '100%' }}>{list}</List>
   );
 }
 
 function ChatListButton ({ name, avatar, lastMessage, date, isSelected }) {
   return (
-    <ListItemButton selected={isSelected} alignItems="flex-start" >
-      <ListItemAvatar className={'avatar'} >
+    <ListItemButton sx={{ padding: '10px' }} selected={isSelected} >
+      <ListItemAvatar>
         <Avatar alt={name} src={avatar}/>
       </ListItemAvatar>
       <ListItemText
-        className={'name_message'}
         primary={
           <Typography
-            color="rgb(24, 87, 203)"
+            color="primary"
           >
             {name}
           </Typography>
@@ -63,7 +60,7 @@ function ChatListButton ({ name, avatar, lastMessage, date, isSelected }) {
           </Typography>
         }
       />
-      <div className="date">{date}</div>
+      <Box color='text.secondary'>{date}</Box>
     </ListItemButton>
   );
 }

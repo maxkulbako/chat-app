@@ -18,7 +18,7 @@ export function Input () {
   return (
     <Paper
       component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', borderRadius: '10px' }}
+      sx={{ m: '10px 10px 10px 0', p: '2px 4px', display: 'flex', alignItems: 'center', borderRadius: '10px' }}
     >
       <IconButton sx={{ p: '10px' }} aria-label="menu">
         <AttachFileIcon />
