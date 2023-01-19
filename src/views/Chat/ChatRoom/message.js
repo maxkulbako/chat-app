@@ -18,7 +18,7 @@ export function Message ({ avatar, secondary, name }) {
           flexDirection: isMainUser ? 'row-reverse' : ''
         }} button>
         <ListItemAvatar>
-          <Avatar alt={name} src={avatar} sx={{ marginLeft: isMainUser ? '8px' : '' }} />
+          <Avatar alt={name} src={isMainUser ? mainUser.avatar : avatar} sx={{ marginLeft: isMainUser ? '8px' : '' }} />
         </ListItemAvatar>
         <ListItemText secondary={
           <Typography variant='body2'

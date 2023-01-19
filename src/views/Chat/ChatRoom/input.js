@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
@@ -8,13 +9,24 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
 import { styled } from '@mui/material/styles';
+import { useParams } from 'react-router-dom';
 
 const StyledFab = styled(Fab)({
   width: '36px',
   height: '36px'
 });
 
-export function Input () {
+export function Input ({ send }) {
+  const { roomId } = useParams();
+  const [text, setText] = useState('');
+
+  const sendHandler = () => {
+    if (text) {
+      send({ text, roomId });
+      setText('');
+    };
+  };
+
   return (
     <Paper
       component="form"
@@ -26,13 +38,17 @@ export function Input () {
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Write Something"
-        inputProps={{ 'aria-label': 'write something' }}
+        // inputProps={{ 'aria-label': 'write something' }}
+        value={text}
+        onChange={e => setText(e.target.value)}
       />
       <IconButton type="button" sx={{ p: '10px' }} aria-label="keyboard">
         <KeyboardIcon color={'primary'} />
       </IconButton>
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-      <StyledFab color="primary" aria-label="send">
+      <StyledFab color="primary" aria-label="send"
+        onClick={sendHandler}
+      >
         <SendIcon fontSize={'small'} sx={{ transform: 'rotate(-45deg)' }}/>
       </StyledFab>
     </Paper>

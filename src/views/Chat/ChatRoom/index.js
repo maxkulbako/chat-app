@@ -16,6 +16,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import { Grid, Box, Typography } from '@mui/material';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { actionSendMessage } from '../../../store/chat/actions';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -60,7 +61,7 @@ function ChatHeader ({ name, avatar }) {
   );
 }
 
-export function ChatRoomView ({ chatList }) {
+export function ChatRoomView ({ chatList, send }) {
   const { roomId } = useParams();
   const activeRoom = chatList.find(item => item.id === roomId);
   const name = activeRoom.name;
@@ -95,7 +96,7 @@ export function ChatRoomView ({ chatList }) {
       </Grid>
       <Grid>
         <Divider/>
-        <Input/>
+        <Input send={send}/>
       </Grid>
     </Grid>
   );
@@ -105,4 +106,8 @@ const mapState = state => ({
   chatList: selectChatList(state)
 });
 
-export const ChatRoom = connect(mapState)(ChatRoomView);
+const mapDispatch = (dispatch) => ({
+  send: (text) => dispatch(actionSendMessage(text))
+});
+
+export const ChatRoom = connect(mapState, mapDispatch)(ChatRoomView);
