@@ -3,65 +3,15 @@ import { useParams } from 'react-router-dom';
 import { Message } from './message';
 import { Input } from './input';
 import Divider from '@mui/material/Divider';
-import Avatar from '@mui/material/Avatar';
-import { styled } from '@mui/material/styles';
-import Badge from '@mui/material/Badge';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import Checkbox from '@mui/material/Checkbox';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
-import { Grid, Box, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { actionSendMessage } from '../../../store/chat/actions';
+import { actionSendMessage, actionDeleteMessage, actionDeleteAllMessages } from '../../../store/chat/actions';
+import { BasicSpeedDial, ChatHeader } from './components';
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
-  '& .MuiBadge-badge': {
-    backgroundColor: '#44b700',
-    color: '#44b700',
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`
-  }
-}));
-
-function ChatHeader ({ name, avatar }) {
-  return (
-    <Box>
-      <Grid item container alignItems='center' justifyContent='space-between' sx={{ padding: '10px 10px 10px 0' }}>
-        <Grid container direction='row' sx={{ width: 'fit-content', columnGap: '15px' }} >
-          <Grid>
-            <Avatar
-              alt={name}
-              src={avatar}
-              sx={{ width: 46, height: 46 }}
-            />
-          </Grid>
-          <Grid>
-            <Typography> {name}</Typography>
-          </Grid>
-          <Grid>
-            <StyledBadge
-              overlap="circular"
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-              variant="dot"
-            >
-            </StyledBadge>
-          </Grid>
-        </Grid>
-        <Grid>
-          <IconButton size="large" aria-label="search" color="inherit">
-            <SearchIcon />
-          </IconButton>
-          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color={'warning'} />} />
-        </Grid>
-      </Grid>
-    </Box>
-  );
-}
-
-export function ChatRoomView ({ chatList, send }) {
+export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll }) {
   const { roomId } = useParams();
   const activeRoom = chatList.find(item => item.id === roomId);
   const name = activeRoom.name;
@@ -89,14 +39,15 @@ export function ChatRoomView ({ chatList, send }) {
                 </ListSubheader>
               )}
 
-              <Message secondary={secondary} avatar={avatar} name={name}/>
+              <Message deleteMessage={deleteMessage} messageId={id} secondary={secondary} avatar={avatar} name={name}/>
             </React.Fragment>
           ))}
         </List>
+        <BasicSpeedDial roomId={roomId} actionFn={deleteAll}/>
       </Grid>
       <Grid>
         <Divider/>
-        <Input send={send}/>
+        <Input send={sendMessage}/>
       </Grid>
     </Grid>
   );
@@ -107,7 +58,9 @@ const mapState = state => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  send: (text) => dispatch(actionSendMessage(text))
+  sendMessage: (text) => dispatch(actionSendMessage(text)),
+  deleteMessage: (message) => dispatch(actionDeleteMessage(message)),
+  deleteAll: (messages) => dispatch(actionDeleteAllMessages(messages))
 });
 
 export const ChatRoom = connect(mapState, mapDispatch)(ChatRoomView);

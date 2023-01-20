@@ -38,7 +38,6 @@ export function Input ({ send }) {
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Write Something"
-        // inputProps={{ 'aria-label': 'write something' }}
         value={text}
         onChange={e => setText(e.target.value)}
       />
