@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './SideBar';
-import { selectChatList } from '@store/chat';
+import { selectChatList, selectMainUser } from '@store/chat';
 import { connect } from 'react-redux';
 import { Box, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -15,12 +15,12 @@ const ChatContainer = styled(Grid)({
   overflow: 'hidden'
 });
 
-function ChatView ({ chatList }) {
+function ChatView ({ chatList, mainUser }) {
   return (
     <Box>
       <ChatContainer container sx={{ flexWrap: 'noWrap', columnGap: '10px' }}>
         <Grid item xs={4}>
-          <Sidebar chatList={chatList}/>
+          <Sidebar chatList={chatList} mainUser={mainUser} />
         </Grid>
         <Grid item xs>
           <Outlet/>
@@ -31,7 +31,8 @@ function ChatView ({ chatList }) {
 }
 
 const mapState = state => ({
-  chatList: selectChatList(state)
+  chatList: selectChatList(state),
+  mainUser: selectMainUser(state)
 });
 
 export const Chat = connect(mapState)(ChatView);

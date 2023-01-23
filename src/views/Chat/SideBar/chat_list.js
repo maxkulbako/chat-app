@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Link, useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
+import { Grid } from '@mui/material';
 
 const StyleLink = styled(Link)({
   textDecoration: 'none'
@@ -21,7 +22,7 @@ export function ChatList ({ chatList }) {
         <ChatListButton
           name={item.name}
           avatar={item.avatar}
-          lastMessage={item.lastMessage}
+          lastMessage= {item.messages && item.messages.length > 0 ? item.messages[item.messages.length - 1].secondary : 'no messages'}
           date={item.date}
           isSelected = {roomId === item.id}
         />
@@ -42,12 +43,25 @@ function ChatListButton ({ name, avatar, lastMessage, date, isSelected }) {
         <Avatar alt={name} src={avatar}/>
       </ListItemAvatar>
       <ListItemText
+        sx={{
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+          width: '100px'
+        }}
         primary={
-          <Typography
-            color="primary"
-          >
-            {name}
-          </Typography>
+          <Grid container item xs justifyContent='space-between'>
+            <Grid item>
+              <Typography
+                color="primary"
+              >
+                {name}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography color='text.secondary' display='block' variant='body2'>{date}</Typography>
+            </Grid>
+          </Grid>
         }
         secondary={
           <Typography
@@ -60,7 +74,6 @@ function ChatListButton ({ name, avatar, lastMessage, date, isSelected }) {
           </Typography>
         }
       />
-      <Box color='text.secondary'>{date}</Box>
     </ListItemButton>
   );
 }

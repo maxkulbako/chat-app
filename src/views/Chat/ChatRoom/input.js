@@ -9,20 +9,18 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
 import { styled } from '@mui/material/styles';
-import { useParams } from 'react-router-dom';
 
 const StyledFab = styled(Fab)({
   width: '36px',
   height: '36px'
 });
 
-export function Input ({ send }) {
-  const { roomId } = useParams();
+export function Input ({ sendMessage, roomId }) {
   const [text, setText] = useState('');
 
   const sendHandler = () => {
     if (text) {
-      send({ text, roomId });
+      sendMessage({ text, roomId });
       setText('');
     };
   };

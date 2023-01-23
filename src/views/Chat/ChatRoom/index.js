@@ -1,4 +1,4 @@
-import { selectChatList } from '@store/chat';
+import { selectChatList, selectMainUser } from '@store/chat';
 import { useParams } from 'react-router-dom';
 import { Message } from './message';
 import { Input } from './input';
@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { actionSendMessage, actionDeleteMessage, actionDeleteAllMessages } from '../../../store/chat/actions';
 import { BasicSpeedDial, ChatHeader } from './components';
 
-export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll }) {
+export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll, mainUser }) {
   const { roomId } = useParams();
   const activeRoom = chatList.find(item => item.id === roomId);
   const name = activeRoom.name;
@@ -39,7 +39,15 @@ export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll 
                 </ListSubheader>
               )}
 
-              <Message deleteMessage={deleteMessage} messageId={id} secondary={secondary} avatar={avatar} name={name}/>
+              <Message
+                deleteMessage={deleteMessage}
+                messageId={id}
+                secondary={secondary}
+                avatar={avatar}
+                name={name}
+                mainUser={mainUser}
+                roomId={roomId}
+              />
             </React.Fragment>
           ))}
         </List>
@@ -47,14 +55,15 @@ export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll 
       </Grid>
       <Grid>
         <Divider/>
-        <Input send={sendMessage}/>
+        <Input roomId={roomId} sendMessage={sendMessage}/>
       </Grid>
     </Grid>
   );
 }
 
 const mapState = state => ({
-  chatList: selectChatList(state)
+  chatList: selectChatList(state),
+  mainUser: selectMainUser(state)
 });
 
 const mapDispatch = (dispatch) => ({

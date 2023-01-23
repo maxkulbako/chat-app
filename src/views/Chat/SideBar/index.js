@@ -1,10 +1,9 @@
 import { PersonalBar } from './personal_bar';
 import { Search } from './search';
 import { ChatList } from './chat_list';
-import { mainUser } from '@store/constants';
 import { Box, Grid } from '@mui/material';
 
-export function Sidebar ({ chatList }) {
+export function Sidebar ({ chatList, mainUser }) {
   return (
     <Box sx={{ padding: '10px 0', height: '100%' }}>
       <Grid
@@ -13,7 +12,7 @@ export function Sidebar ({ chatList }) {
         direction='column'
       >
         <Grid item xs>
-          <PersonalBar userData={mainUser}/>
+          <PersonalBar mainUser={mainUser}/>
         </Grid>
         <Grid item xs>
           <Search/>

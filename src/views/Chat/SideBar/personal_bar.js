@@ -29,9 +29,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   }
 }));
 
-function BadgeAvatars ({ userData }) {
-  const name = userData.name;
-  const avatar = userData.avatar;
+function BadgeAvatars ({ mainUser }) {
+  const name = mainUser.name;
+  const avatar = mainUser.avatar;
 
   return (
     <StyledBadge
@@ -47,17 +47,17 @@ function BadgeAvatars ({ userData }) {
   );
 }
 
-export function PersonalBar ({ userData }) {
+export function PersonalBar ({ mainUser }) {
   return (
     <Box sx={{ padding: '0 10px' }}>
       <Grid container spacing={2}>
         <Grid item>
-          <BadgeAvatars userData={userData}/>
+          <BadgeAvatars mainUser={mainUser}/>
         </Grid>
         <Grid item xs={12} sm container>
           <Grid item xs container direction='column'>
-            <Typography gutterBottom variant="subtitle1" component="div" color='primary'>{userData.name}</Typography>
-            <Typography variant="body2" color="text.secondary">{userData.appointment}</Typography>
+            <Typography gutterBottom variant="subtitle1" component="div" color='primary'>{mainUser.name}</Typography>
+            <Typography variant="body2" color="text.secondary">{mainUser.appointment}</Typography>
           </Grid>
           <Grid>
             <IconButton >
