@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/chat_app/static/js/main.54a8a836.js",
-    "index.html": "/chat_app/index.html",
-    "main.54a8a836.js.map": "/chat_app/static/js/main.54a8a836.js.map"
+    "main.js": "/chat-app/static/js/main.54a8a836.js",
+    "index.html": "/chat-app/index.html",
+    "main.54a8a836.js.map": "/chat-app/static/js/main.54a8a836.js.map"
   },
   "entrypoints": [
     "static/js/main.54a8a836.js"
