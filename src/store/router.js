@@ -2,11 +2,11 @@ import { Chat } from '@views/Chat';
 import { ChatRoom } from '@views/Chat/ChatRoom';
 import { EmptyRoom } from '@views/Chat/EmptyRoom';
 import App from '../App';
-import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 
 import { AuthSignIn, AuthSignUp, AuthForgot } from '@views/Auth';
 
-export const routes = createBrowserRouter([
+export const routes = createHashRouter([
   {
     path: '/',
     element: <App />,
