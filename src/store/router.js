@@ -2,11 +2,13 @@ import { Chat } from '@views/Chat';
 import { ChatRoom } from '@views/Chat/ChatRoom';
 import { EmptyRoom } from '@views/Chat/EmptyRoom';
 import App from '../App';
-import { createHashRouter } from 'react-router-dom';
+import { createHashRouter, createBrowserRouter } from 'react-router-dom';
 
 import { AuthSignIn, AuthSignUp, AuthForgot } from '@views/Auth';
 
-export const routes = createHashRouter([
+const createRouter = process.env.ENV === 'gh-pages' ? createHashRouter : createBrowserRouter;
+
+export const routes = createRouter([
   {
     path: '/',
     element: <App />,

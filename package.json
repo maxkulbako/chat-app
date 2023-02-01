@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "dotenv": "^16.0.3",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "normalize.css": "^8.0.1",
@@ -29,9 +30,10 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "build:gp": "ENV=gh-pages craco build",
     "test": "craco test",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build:gp",
+    "deploy": "gh-pages -d build:gp"
   },
   "eslintConfig": {
     "extends": [
