@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/chat-app/static/js/main.54a8a836.js",
+    "main.js": "/chat-app/static/js/main.f8767d7f.js",
     "index.html": "/chat-app/index.html",
-    "main.54a8a836.js.map": "/chat-app/static/js/main.54a8a836.js.map"
+    "main.f8767d7f.js.map": "/chat-app/static/js/main.f8767d7f.js.map"
   },
   "entrypoints": [
-    "static/js/main.54a8a836.js"
+    "static/js/main.f8767d7f.js"
   ]
 }
