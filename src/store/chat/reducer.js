@@ -8,8 +8,8 @@ const initialState = {
     appointment: 'front-end developer'
   },
   list: [
-    createMockChat(),
-    createMockChat(),
+    createMockChat({ id: '1' }),
+    createMockChat({ id: '2' }),
     {
       id: '3',
       name: 'Jeff Bezos',
@@ -71,8 +71,12 @@ const initialState = {
         }
       ]
     },
-    createMockChat(),
-    createMockChat()
+    createMockChat({ id: '4' }),
+    createMockChat({ id: '5' }),
+    createMockChat({ id: '6' }),
+    createMockChat({ id: '7' }),
+    createMockChat({ id: '8' }),
+    createMockChat({ id: '9' })
   ]
 };
 
