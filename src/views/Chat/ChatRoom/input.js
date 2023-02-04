@@ -28,6 +28,12 @@ export function Input ({ sendMessage, roomId }) {
   return (
     <Paper
       component="form"
+      onKeyDown={e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          sendHandler();
+        };
+      }}
       sx={{ m: '10px 10px 10px 0', p: '2px 4px', display: 'flex', alignItems: 'center', borderRadius: '10px' }}
     >
       <IconButton sx={{ p: '10px' }} aria-label="menu">
