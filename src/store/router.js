@@ -10,7 +10,7 @@ const createRouter = process.env.ENV === 'gh-pages' ? createHashRouter : createB
 
 export const routes = createRouter([
   {
-    path: '/',
+    path: '/chat-app',
     element: <App />,
     children: [
       {
@@ -21,7 +21,7 @@ export const routes = createRouter([
             element: <EmptyRoom/>
           },
           {
-            path: ':roomId',
+            path: '/chat-app/:roomId',
             element: <ChatRoom />
           }
         ]

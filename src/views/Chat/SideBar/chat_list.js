@@ -18,7 +18,7 @@ export function ChatList ({ chatList }) {
   const { roomId } = useParams();
   const list = chatList.map((item) => (
     <Box key={item.id}>
-      <StyleLink to={`/${item.id}`}>
+      <StyleLink to={`/chat-app/${item.id}`}>
         <ChatListButton
           name={item.name}
           avatar={item.avatar}
