@@ -10,17 +10,19 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { actionSendMessage, actionDeleteMessage, actionDeleteAllMessages } from '../../../store/chat/actions';
 import { BasicSpeedDial, ChatHeader } from './components';
+import { useState } from 'react';
 
 export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll, mainUser }) {
   const { roomId } = useParams();
   const activeRoom = chatList.find(item => item.id === roomId);
   const name = activeRoom.name;
   const avatar = activeRoom.avatar;
+  const [text, setText] = useState('');
 
   return (
     <Grid container direction='column' justifyContent='space-between' sx={{ height: '100%', flexWrap: 'noWrap' }} item xs>
       <Grid>
-        <ChatHeader name={name} avatar={avatar}/>
+        <ChatHeader name={name} avatar={avatar} text={text} onSearch={setText} />
         <Divider/>
       </Grid>
       <Grid sx={{ overflow: 'auto' }}>
@@ -47,6 +49,7 @@ export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll,
                 name={name}
                 mainUser={mainUser}
                 roomId={roomId}
+                text={text}
               />
             </React.Fragment>
           ))}

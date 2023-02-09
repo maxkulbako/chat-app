@@ -1,9 +1,16 @@
+import { useState } from 'react';
 import { PersonalBar } from './personal_bar';
-import { Search } from './search';
+import { Search, chatListFilter } from './search';
 import { ChatList } from './chat_list';
 import { Box, Grid } from '@mui/material';
 
 export function Sidebar ({ chatList, mainUser }) {
+  const [search, setSearch] = useState('');
+
+  if (search) {
+    chatList = chatList.filter((item) => chatListFilter(item, search));
+  }
+
   return (
     <Box sx={{ padding: '10px 0', height: '100%' }}>
       <Grid
@@ -15,7 +22,7 @@ export function Sidebar ({ chatList, mainUser }) {
           <PersonalBar mainUser={mainUser}/>
         </Grid>
         <Grid item xs>
-          <Search/>
+          <Search search={search} onSearch={setSearch}/>
         </Grid>
         <Grid item xs>
           <ChatList chatList={chatList}/>

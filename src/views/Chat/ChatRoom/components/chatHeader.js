@@ -6,7 +6,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import { Grid, Box, Typography } from '@mui/material';
+import { Grid, Box, Typography, FormControl, OutlinedInput } from '@mui/material';
+import { useRef, useState } from 'react';
+
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     backgroundColor: '#44b700',
@@ -15,7 +17,18 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   }
 }));
 
-export function ChatHeader ({ name, avatar }) {
+export function ChatHeader ({ name, avatar, text, onSearch }) {
+  const [inputVisible, setInputVisible] = useState(false);
+  const inputRef = useRef(null);
+  const handlerSearchButton = () => {
+    setInputVisible(!inputVisible);
+    setTimeout(() => inputRef.current.focus(), 0);
+  };
+  const handleInput = () => {
+    onSearch('');
+    setInputVisible(!inputVisible);
+  };
+
   return (
     <Box>
       <Grid item container alignItems='center' justifyContent='space-between' sx={{ padding: '10px 10px 10px 0' }}>
@@ -39,8 +52,18 @@ export function ChatHeader ({ name, avatar }) {
             </StyledBadge>
           </Grid>
         </Grid>
-        <Grid>
-          <IconButton size="large" aria-label="search" color="inherit">
+        <Grid sx={{ display: 'flex', alignItems: 'center' }}>
+          <FormControl size='small' sx={{ width: 'fit-content', visibility: inputVisible ? 'visible' : 'hidden' }} >
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type='text'
+              value={text}
+              onChange={ e => onSearch(e.target.value)}
+              onBlur={handleInput}
+              inputProps={{ ref: inputRef }}
+            />
+          </FormControl>
+          <IconButton size="large" aria-label="search" color="inherit" onClick={handlerSearchButton} >
             <SearchIcon />
           </IconButton>
           <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color={'warning'} />} />

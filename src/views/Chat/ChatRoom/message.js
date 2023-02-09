@@ -5,9 +5,10 @@ import { ListItem, Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Highlighter from 'react-highlight-words';
 import { useState } from 'react';
 
-export function Message ({ avatar, secondary, name, messageId, deleteMessage, mainUser, roomId }) {
+export function Message ({ avatar, secondary, name, messageId, deleteMessage, mainUser, roomId, text }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const theme = useTheme();
   const isMainUser = mainUser.name === name;
@@ -43,7 +44,11 @@ export function Message ({ avatar, secondary, name, messageId, deleteMessage, ma
               : { padding: '8px' }
             }
           >
-            {secondary}
+            <Highlighter
+              searchWords={[text]}
+              autoEscape={true}
+              textToHighlight={secondary}
+            />
           </Typography>
         }
         />
