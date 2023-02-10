@@ -5,7 +5,7 @@ export function createMockMessage (override) {
     id: faker.datatype.uuid(),
     fromId: faker.datatype.uuid(),
     created: faker.date.past().getTime(),
-    secondary: faker.lorem.text(),
+    messageText: faker.lorem.text(),
     person: '',
     ...override
   };

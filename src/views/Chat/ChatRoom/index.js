@@ -1,60 +1,62 @@
 import { selectChatList, selectMainUser } from '@store/chat';
-import { useParams } from 'react-router-dom';
-import { Message } from './message';
-import { Input } from './input';
-import Divider from '@mui/material/Divider';
-import List from '@mui/material/List';
-import ListSubheader from '@mui/material/ListSubheader';
-import Grid from '@mui/material/Grid';
-import * as React from 'react';
+import { Message } from './Message';
+import { Input } from './Input';
+import { Divider, List, Grid, Box } from '@mui/material';
 import { connect } from 'react-redux';
-import { actionSendMessage, actionDeleteMessage, actionDeleteAllMessages } from '../../../store/chat/actions';
+import { useParams } from 'react-router-dom';
+import { useState, useRef } from 'react';
+import { actionSendMessage, actionDeleteMessage, actionDeleteAllMessages } from '@store/chat/actions';
 import { BasicSpeedDial, ChatHeader } from './components';
-import { useState } from 'react';
 
-export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll, mainUser }) {
+export function ChatRoomView ({
+  chatList,
+  mainUser,
+  sendMessage,
+  deleteMessage,
+  deleteAllMessages
+}) {
   const { roomId } = useParams();
   const activeRoom = chatList.find(item => item.id === roomId);
   const name = activeRoom.name;
   const avatar = activeRoom.avatar;
-  const [text, setText] = useState('');
+  const [textToSearch, setTextToSeach] = useState('');
+  const ref = useRef();
 
   return (
-    <Grid container direction='column' justifyContent='space-between' sx={{ height: '100%', flexWrap: 'noWrap' }} item xs>
+    <Grid container
+      direction='column'
+      justifyContent='space-between'
+      sx={{ height: '100%', flexWrap: 'noWrap' }}
+      item xs
+    >
       <Grid>
-        <ChatHeader name={name} avatar={avatar} text={text} onSearch={setText} />
+        <ChatHeader
+          name={name}
+          avatar={avatar}
+          textToSearch={textToSearch}
+          onSearch={setTextToSeach} />
         <Divider/>
       </Grid>
       <Grid sx={{ overflow: 'auto' }}>
-        <List sx={{ mb: 3 }}>
-          {activeRoom.messages.map(({ id, secondary, name }) => (
-            <React.Fragment key={id}>
-              {id === '1' && (
-                <ListSubheader sx={{ bgcolor: 'background.paper' }}>
-                  Yesterday
-                </ListSubheader>
-              )}
-
-              {id === '3' && (
-                <ListSubheader sx={{ bgcolor: 'background.paper' }}>
-                  Today
-                </ListSubheader>
-              )}
-
-              <Message
-                deleteMessage={deleteMessage}
-                messageId={id}
-                secondary={secondary}
-                avatar={avatar}
-                name={name}
-                mainUser={mainUser}
-                roomId={roomId}
-                text={text}
-              />
-            </React.Fragment>
+        <List sx={{ mb: 3, overflow: 'auto', marginBottom: '0px' }}>
+          {activeRoom.messages.map(({ id, messageText, name }) => (
+            <Message
+              key={id}
+              deleteMessage={deleteMessage}
+              messageId={id}
+              messageText={messageText}
+              avatar={avatar}
+              name={name}
+              mainUser={mainUser}
+              roomId={roomId}
+              textToSearch={textToSearch}
+              reference={ref}
+            />
           ))}
+          <Box ref={ref} marginTop='100px'>
+            <BasicSpeedDial roomId={roomId} actionFn={deleteAllMessages}/>
+          </Box>
         </List>
-        <BasicSpeedDial roomId={roomId} actionFn={deleteAll}/>
       </Grid>
       <Grid>
         <Divider/>

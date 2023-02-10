@@ -34,7 +34,7 @@
     "build:gp": "ENV=gh-pages craco build",
     "test": "craco test",
     "predeploy": "npm run build:gp",
-    "deploy": "gh-pages -d /Users/maksymkulbako/Desktop/Hillel/chat_app/build"
+    "deploy": "gh-pages -d build:gp"
   },
   "eslintConfig": {
     "extends": [

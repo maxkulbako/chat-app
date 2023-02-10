@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ListItemText from '@mui/material/ListItemText';
@@ -6,12 +7,27 @@ import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Highlighter from 'react-highlight-words';
-import { useState } from 'react';
 
-export function Message ({ avatar, secondary, name, messageId, deleteMessage, mainUser, roomId, text }) {
+export function Message ({
+  avatar,
+  messageText,
+  name,
+  messageId,
+  deleteMessage,
+  mainUser,
+  roomId,
+  textToSearch,
+  reference
+}) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const theme = useTheme();
   const isMainUser = mainUser.name === name;
+
+  useEffect(() => {
+    reference.current.scrollIntoView({
+      behavior: 'smooth', block: 'end', inline: 'nearest'
+    });
+  }, [messageText]);
 
   const deleteHandler = () => {
     deleteMessage({ roomId, messageId });
@@ -26,9 +42,13 @@ export function Message ({ avatar, secondary, name, messageId, deleteMessage, ma
           width: '70%',
           display: 'flex',
           flexDirection: isMainUser ? 'row-reverse' : ''
-        }} button>
+        }}>
         <ListItemAvatar>
-          <Avatar alt={name} src={isMainUser ? mainUser.avatar : avatar} sx={{ marginLeft: isMainUser ? '8px' : '' }} />
+          <Avatar
+            alt={name}
+            src={isMainUser ? mainUser.avatar : avatar}
+            sx={{ marginLeft: isMainUser ? '8px' : '' }}
+          />
         </ListItemAvatar>
         <ListItemText sx={{ width: 'inherit' }} secondary={
           <Typography variant='body2'
@@ -45,9 +65,9 @@ export function Message ({ avatar, secondary, name, messageId, deleteMessage, ma
             }
           >
             <Highlighter
-              searchWords={[text]}
+              searchWords={[textToSearch]}
               autoEscape={true}
-              textToHighlight={secondary}
+              textToHighlight={messageText}
             />
           </Typography>
         }

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -27,14 +26,20 @@ export function Input ({ sendMessage, roomId }) {
 
   return (
     <Paper
-      component="form"
+      component='form'
       onKeyDown={e => {
         if (e.key === 'Enter') {
           e.preventDefault();
           sendHandler();
         };
       }}
-      sx={{ m: '10px 10px 10px 0', p: '2px 4px', display: 'flex', alignItems: 'center', borderRadius: '10px' }}
+      sx={{
+        m: '10px 10px 10px 0',
+        p: '2px 4px',
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: '10px'
+      }}
     >
       <IconButton sx={{ p: '10px' }} aria-label="menu">
         <AttachFileIcon />

@@ -1,13 +1,14 @@
+import { connect } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './SideBar';
 import { selectChatList, selectMainUser } from '@store/chat';
-import { connect } from 'react-redux';
 import { Box, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const ChatContainer = styled(Grid)({
   background: '#ffffff',
   maxWidth: '1024px',
+  maxHeight: '600px',
   width: 'calc(100vw - 50px)',
   height: 'calc(100vh - 100px)',
   margin: '50px auto',

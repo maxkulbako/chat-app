@@ -1,2 +1,2 @@
-export * from './speedDial';
-export * from './chatHeader';
+export * from './SpeedDial';
+export * from './ChatHeader';

@@ -1,6 +1,5 @@
 import { styled } from '@mui/material/styles';
-import CreateIcon from '@mui/icons-material/Create';
-import { IconButton, Badge, Avatar, Grid, Box, Typography } from '@mui/material';
+import { Badge, Avatar } from '@mui/material';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -29,7 +28,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   }
 }));
 
-function BadgeAvatars ({ mainUser }) {
+export function BadgeAvatars ({ mainUser }) {
   const name = mainUser.name;
   const avatar = mainUser.avatar;
 
@@ -44,28 +43,5 @@ function BadgeAvatars ({ mainUser }) {
         sx={{ width: 56, height: 56 }}
       />
     </StyledBadge>
-  );
-}
-
-export function PersonalBar ({ mainUser }) {
-  return (
-    <Box sx={{ padding: '0 10px' }}>
-      <Grid container spacing={2}>
-        <Grid item>
-          <BadgeAvatars mainUser={mainUser}/>
-        </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction='column'>
-            <Typography gutterBottom variant="subtitle1" component="div" color='primary'>{mainUser.name}</Typography>
-            <Typography variant="body2" color="text.secondary">{mainUser.appointment}</Typography>
-          </Grid>
-          <Grid>
-            <IconButton >
-              <CreateIcon fontSize="small"/>
-            </IconButton>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Box>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { PersonalBar } from './personal_bar';
-import { Search, chatListFilter } from './search';
-import { ChatList } from './chat_list';
+import { PersonalBar } from './PersonalBar';
+import { Search, chatListFilter } from './Search';
+import { ChatList } from './ChatList';
 import { Box, Grid } from '@mui/material';
 
 export function Sidebar ({ chatList, mainUser }) {

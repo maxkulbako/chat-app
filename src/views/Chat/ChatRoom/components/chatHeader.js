@@ -17,13 +17,15 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   }
 }));
 
-export function ChatHeader ({ name, avatar, text, onSearch }) {
+export function ChatHeader ({ name, avatar, textToSearch, onSearch }) {
   const [inputVisible, setInputVisible] = useState(false);
   const inputRef = useRef(null);
+
   const handlerSearchButton = () => {
     setInputVisible(!inputVisible);
     setTimeout(() => inputRef.current.focus(), 0);
   };
+
   const handleInput = () => {
     onSearch('');
     setInputVisible(!inputVisible);
@@ -31,7 +33,11 @@ export function ChatHeader ({ name, avatar, text, onSearch }) {
 
   return (
     <Box>
-      <Grid item container alignItems='center' justifyContent='space-between' sx={{ padding: '10px 10px 10px 0' }}>
+      <Grid item container
+        alignItems='center'
+        justifyContent='space-between'
+        sx={{ padding: '10px 10px 10px 0' }}
+      >
         <Grid container direction='row' sx={{ width: 'fit-content', columnGap: '15px' }} >
           <Grid>
             <Avatar
@@ -57,7 +63,7 @@ export function ChatHeader ({ name, avatar, text, onSearch }) {
             <OutlinedInput
               id="outlined-adornment-password"
               type='text'
-              value={text}
+              value={textToSearch}
               onChange={ e => onSearch(e.target.value)}
               onBlur={handleInput}
               inputProps={{ ref: inputRef }}
