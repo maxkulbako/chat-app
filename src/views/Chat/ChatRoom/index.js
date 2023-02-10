@@ -6,11 +6,12 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { actionSendMessage, actionDeleteMessage, actionDeleteAllMessages } from '../../../store/chat/actions';
 import { BasicSpeedDial, ChatHeader } from './components';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll, mainUser }) {
   const { roomId } = useParams();
@@ -18,6 +19,7 @@ export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll,
   const name = activeRoom.name;
   const avatar = activeRoom.avatar;
   const [text, setText] = useState('');
+  const ref = useRef();
 
   return (
     <Grid container direction='column' justifyContent='space-between' sx={{ height: '100%', flexWrap: 'noWrap' }} item xs>
@@ -25,7 +27,7 @@ export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll,
         <ChatHeader name={name} avatar={avatar} text={text} onSearch={setText} />
         <Divider/>
       </Grid>
-      <Grid sx={{ overflow: 'auto' }}>
+      <Grid sx={{ overflow: 'auto', position: 'relative' }}>
         <List sx={{ mb: 3 }}>
           {activeRoom.messages.map(({ id, secondary, name }) => (
             <React.Fragment key={id}>
@@ -50,11 +52,14 @@ export function ChatRoomView ({ chatList, sendMessage, deleteMessage, deleteAll,
                 mainUser={mainUser}
                 roomId={roomId}
                 text={text}
+                reference={ref}
               />
             </React.Fragment>
           ))}
         </List>
-        <BasicSpeedDial roomId={roomId} actionFn={deleteAll}/>
+        <Box ref={ref}>
+          <BasicSpeedDial roomId={roomId} actionFn={deleteAll}/>
+        </Box>
       </Grid>
       <Grid>
         <Divider/>
