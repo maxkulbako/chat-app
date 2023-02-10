@@ -74,7 +74,7 @@ const mapState = state => ({
 const mapDispatch = (dispatch) => ({
   sendMessage: (text) => dispatch(actionSendMessage(text)),
   deleteMessage: (message) => dispatch(actionDeleteMessage(message)),
-  deleteAll: (messages) => dispatch(actionDeleteAllMessages(messages))
+  deleteAllMessages: (messages) => dispatch(actionDeleteAllMessages(messages))
 });
 
 export const ChatRoom = connect(mapState, mapDispatch)(ChatRoomView);
